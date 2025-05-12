@@ -50,4 +50,4 @@ Fork the repo and make a pull request. Deadline will be noted directly to you.
 
 > What if I have a question?
 
-Feel free to create a new issue or reach out to us
+Feel free to reach out to daniel.kousholt@akqa.com
