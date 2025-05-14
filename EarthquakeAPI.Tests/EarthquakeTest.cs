@@ -1,14 +1,15 @@
 ﻿using Microsoft.AspNetCore.Components.Routing;
 using System;
 using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
-
+using EarthquakeAPI.Models;
+using EarthquakeAPI.Repository;
 namespace EarthquakeAPI.Tests;
 
 [TestClass]
 public sealed class EarthquakeTest
 {
     [TestMethod]
-    public void AddPerson()
+    public void TestAddPerson()
     {
         var repository = new PersonRepository();
         var person = new Person
@@ -18,7 +19,7 @@ public sealed class EarthquakeTest
             age = 30,
             gender = "male",
             isAlive = true,
-            location = new Location { latitude = 10.0, longitude = 20.0 }
+            location = new EarthquakeAPI.Models.Location { latitude = 10.0, longitude = 20.0 }
         };
 
         repository.AddPerson(person);
