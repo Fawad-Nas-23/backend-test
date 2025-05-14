@@ -16,6 +16,11 @@ namespace EarthquakeAPI.Repository
             return _people;
         }
 
+        public List<Person> GetAllSurvivors()
+        {
+            return _people.Where(p => p.isAlive).ToList();
+        }
+
         public void UpdateLocation(string firstName, string lastName, Location newLocation)
         {
             var person = _people.FirstOrDefault(p => p.firstName == firstName && p.lastName == lastName);
