@@ -15,6 +15,7 @@ namespace EarthquakeAPI.Repository
         {
             return _people;
         }
+
     }
 
 }
