@@ -76,7 +76,7 @@ public sealed class EarthquakeTest
     }
 
     [TestMethod]
-    public void GetAllSurvivorsWithLocations()
+    public void TestGetAllSurvivorsWithLocations()
     {
         var repo = new PersonRepository();
 
@@ -112,7 +112,7 @@ public sealed class EarthquakeTest
     }
 
     [TestMethod]
-    public void GetSurvivorPercantage()
+    public void TestGetSurvivorPercantage()
     {
         var repo = new PersonRepository();
 
@@ -132,15 +132,12 @@ public sealed class EarthquakeTest
 
         repo.AddPerson(person1);
         repo.AddPerson(person2);
-        repo.AddPerson(person3);
 
-        // Act
+      
         double percentage = repo.GetSurvivorPercentage();
 
-        // Assert
-        Assert.AreEqual(50.00, Math.Round(percentage, 2))
+        Assert.AreEqual(50, percentage);
     }
-
 
 
 

@@ -21,6 +21,17 @@ namespace EarthquakeAPI.Repository
             return _people.Where(p => p.isAlive).ToList();
         }
 
+        public double GetSurvivorPercentage()
+        {
+            if (_people.Count == 0)
+            {
+                return 0;
+            }
+            int totalPeople = _people.Count;
+            int totalSurvivors = _people.Count(p => p.isAlive);
+            return (double)totalSurvivors / totalPeople * 100;
+        }
+
         public void UpdateLocation(string firstName, string lastName, Location newLocation)
         {
             var person = _people.FirstOrDefault(p => p.firstName == firstName && p.lastName == lastName);
