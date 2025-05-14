@@ -28,7 +28,7 @@ public sealed class EarthquakeTest
     }
 
     [TestMethod]
-    public void UpdateLocationInSameHemisphere()
+    public void TestUpdateLocationInSameHemisphere()
     {
         var repo = new PersonRepository();
         var person = new Person
@@ -55,7 +55,7 @@ public sealed class EarthquakeTest
 
     [TestMethod]
     [ExpectedException(typeof(ArgumentException))]
-    public void UpdateLocationInDifferentHemisphere()
+    public void TestUpdateLocationInDifferentHemisphere()
     {
         var repo = new PersonRepository();
         var person = new Person
@@ -73,6 +73,42 @@ public sealed class EarthquakeTest
         var newLocation = new EarthquakeAPI.Models.Location { latitude = -20.0, longitude = -50.0 };
 
         repo.UpdateLocation(person.firstName, person.lastName, newLocation);
+    }
+
+    [TestMethod]
+    public void GetAllSurvivorsWithLocations()
+    {
+        var repo = new PersonRepository();
+
+        var alivePerson = new Person
+        {
+            firstName = "Anna",
+            lastName = "Larsen",
+            age = 28,
+            gender = "female",
+            isAlive = true,
+            location = new EarthquakeAPI.Models.Location { latitude = 10.0, longitude = 20.0 }
+        };
+
+        var deceasedPerson = new Person
+        {
+            firstName = "Bo",
+            lastName = "Larsen",
+            age = 50,
+            gender = "male",
+            isAlive = false,
+            location = new EarthquakeAPI.Models.Location { latitude = 15.0, longitude = 25.0 }
+        };
+
+        repo.AddPerson(alivePerson);
+        repo.AddPerson(deceasedPerson);
+
+        var survivors = repo.GetAllSurvivors();
+
+        Assert.AreEqual(1, survivors.Count);
+        Assert.AreEqual("Anna", survivors[0].firstName);
+        Assert.AreEqual(10.0, survivors[0].location.latitude);
+        Assert.AreEqual(20.0, survivors[0].location.longitude);
     }
 
 
