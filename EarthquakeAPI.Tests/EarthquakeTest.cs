@@ -111,6 +111,36 @@ public sealed class EarthquakeTest
         Assert.AreEqual(20.0, survivors[0].location.longitude);
     }
 
+    [TestMethod]
+    public void GetSurvivorPercantage()
+    {
+        var repo = new PersonRepository();
+
+        var person1 = new Person
+        {
+            firstName = "Anna",
+            lastName = "Larsen",
+            isAlive = true
+        };
+
+        var person2 = new Person
+        {
+            firstName = "Bo",
+            lastName = "Larsen",
+            isAlive = false
+        };
+
+        repo.AddPerson(person1);
+        repo.AddPerson(person2);
+        repo.AddPerson(person3);
+
+        // Act
+        double percentage = repo.GetSurvivorPercentage();
+
+        // Assert
+        Assert.AreEqual(50.00, Math.Round(percentage, 2))
+    }
+
 
 
 
