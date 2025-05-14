@@ -16,6 +16,14 @@ namespace EarthquakeAPI.Repository
             return _people;
         }
 
+        public void UpdateLocation(string firstName, string lastName, Location newLocation)
+        {
+            var person = _people.FirstOrDefault(p => p.firstName == firstName && p.lastName == lastName);
+
+            if (person == null) return;
+
+            person.location = newLocation;
+        }
     }
 
 }

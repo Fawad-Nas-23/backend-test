@@ -38,12 +38,12 @@ public sealed class EarthquakeTest
             age = 30,
             gender = "female",
             isAlive = true,
-            location = new EarthquakeAPI.Models.Location { latitude = 15.0, longitude = 45.0 } // Northern hemisphere
+            location = new EarthquakeAPI.Models.Location { latitude = 15.0, longitude = 45.0 }
         };
 
         repo.AddPerson(person);
 
-        var newLocation = new EarthquakeAPI.Models.Location { latitude = 20.0, longitude = 50.0 }; // Still northern
+        var newLocation = new EarthquakeAPI.Models.Location { latitude = 20.0, longitude = 50.0 }; 
 
         repo.UpdateLocation(person.firstName, person.lastName, newLocation);
 
