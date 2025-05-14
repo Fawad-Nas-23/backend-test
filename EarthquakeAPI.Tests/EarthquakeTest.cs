@@ -75,6 +75,27 @@ public sealed class EarthquakeTest
         repo.UpdateLocation(person.firstName, person.lastName, newLocation);
     }
 
+    [TestMethod]
+    public void TestSearchByLastName()
+    {
+        var repo = new PersonRepository();
+        var person1 = new Person
+        {
+            firstName = "Anna",
+            lastName = "Larsen",
+            isAlive = true
+        };
+        var person2 = new Person
+        {
+            firstName = "Bo",
+            lastName = "Larsen",
+            isAlive = false
+        };
+        repo.AddPerson(person1);
+        repo.AddPerson(person2);
+
+        var result = repo.SearchByLastName("Larsen");
+        Assert.AreEqual(2, result.Count);
 
 
 
