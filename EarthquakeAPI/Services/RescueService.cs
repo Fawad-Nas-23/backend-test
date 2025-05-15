@@ -21,7 +21,7 @@ namespace EarthquakeAPI.Services
         {
             if (person == null)
             {
-                throw new ArgumentNullException(nameof(person), "Person cannot be null");
+                throw new ArgumentException("Person cannot be null");
             }
             
             _repo.AddPerson(person);
@@ -48,7 +48,7 @@ namespace EarthquakeAPI.Services
         {
             if (string.IsNullOrEmpty(lastName))
             {
-                throw new ArgumentException("Last name cannot be null or empty", nameof(lastName));
+                throw new ArgumentException("Last name cannot be null or empty");
             }
 
             return _repo.SearchByLastName(lastName);
