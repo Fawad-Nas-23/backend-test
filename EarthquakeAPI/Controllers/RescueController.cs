@@ -43,7 +43,7 @@ namespace EarthquakeAPI.Controllers
         /// </summary>
         /// <param name="person">The person object to add.</param>
         /// <returns>Returns 200 OK if added, 400 Bad Request if input is invalid</returns>
-        [HttpPost("add")]
+        [HttpPost("addperson")]
         public IActionResult AddPerson(Person person)
         {
             if (person == null)
@@ -75,12 +75,18 @@ namespace EarthquakeAPI.Controllers
             }
             else
             {
-                _rescueService.UpdateLocation(firstName, lastName, newLocation);
-                 return Ok("Location updated");
-                
+                try
+                {
+                    _rescueService.UpdateLocation(firstName, lastName, newLocation);
+                    return Ok("Location updated");
+                }
+                catch (ArgumentException ex)
+                {
+                    return NotFound(ex.Message); 
+                }
             }
-
         }
+
 
 
         /// <summary>
@@ -99,7 +105,7 @@ namespace EarthquakeAPI.Controllers
         /// </summary>
         /// <param name="lastName">Last name to search for.</param>
         /// <returns>List of matched people.</returns>
-        [HttpGet("search")]
+        [HttpGet("searchbylastname")]
         public IActionResult SearchByLastName(string lastName)
         {
             if (string.IsNullOrEmpty(lastName))
